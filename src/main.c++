@@ -18,7 +18,7 @@ int main(void) {
         MLP::INITIALISATION::XAVIER_UNIFORM,
     };
 
-    MLP::MLP mlp(dims, act, init, 10);
+    MLP::MLP mlp(dims, act, init);
     mlp.disp(); 
 
     return 0;
