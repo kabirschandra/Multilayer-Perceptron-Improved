@@ -4,26 +4,22 @@
 
 int main(void) {
 
-    Eigen::MatrixXd A(2, 2);
 
-    A << 1, 2, 3, 4;
+    std::vector<size_t> dims = {5,4,3,2};
+    std::vector<MLP::ACTIVATION_FUNCTION> act = {
+        MLP::ACTIVATION_FUNCTION::RELU,
+        MLP::ACTIVATION_FUNCTION::TANH,
+        MLP::ACTIVATION_FUNCTION::SIGMOID,
+    
+    };
+    std::vector<MLP::INITIALISATION> init = {
+        MLP::INITIALISATION::HE_KAIMING,
+        MLP::INITIALISATION::UNIFORM,
+        MLP::INITIALISATION::XAVIER_UNIFORM,
+    };
 
-    {
-        std::ofstream file("matrix.bin", std::ios::binary);
-        cereal::BinaryOutputArchive archive(file);
-        archive(A);
-    }
-
-
-    Eigen::MatrixXd matrix2;
-
-    {
-        std::ifstream file2("matrix.bin", std::ios::binary);
-        cereal::BinaryInputArchive archive(file2);
-        archive(matrix2);
-    }
-
-    std::cout << A << std::endl;
+    MLP::MLP mlp(dims, act, init, 10);
+    mlp.disp(); 
 
     return 0;
 }

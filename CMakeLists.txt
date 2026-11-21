@@ -17,7 +17,13 @@ target_include_directories(main PRIVATE
 )
 
 
-
+target_compile_options(main PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+    -march=native
+    -O3
+)
 
 
 
